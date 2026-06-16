@@ -1,5 +1,6 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
 import {createWall} from './walls.js';
+import {rooms} from './rooms.js';
 import { OrbitControls }
 
 from 'https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/controls/OrbitControls.js';
@@ -182,7 +183,91 @@ floor.receiveShadow=true;
 scene.add(floor);
 
 
+rooms.forEach(room=>{
 
+// أرضية الغرفة
+
+const roomFloor = new THREE.Mesh(
+
+new THREE.BoxGeometry(
+room.width,
+0.1,
+room.depth
+),
+
+new THREE.MeshStandardMaterial({
+
+color:"#d7c4a3"
+
+})
+
+);
+
+roomFloor.position.set(
+
+room.x,
+
+0.1,
+
+room.z
+
+);
+
+scene.add(roomFloor);
+
+
+// الحائط الأيسر
+
+createWall(
+scene,
+0.2,
+3,
+room.depth,
+room.x-room.width/2,
+1.5,
+room.z
+);
+
+
+// الحائط الأيمن
+
+createWall(
+scene,
+0.2,
+3,
+room.depth,
+room.x+room.width/2,
+1.5,
+room.z
+);
+
+
+// الحائط العلوي
+
+createWall(
+scene,
+room.width,
+3,
+0.2,
+room.x,
+1.5,
+room.z-room.depth/2
+);
+
+
+// الحائط السفلي
+
+createWall(
+scene,
+room.width,
+3,
+0.2,
+room.x,
+1.5,
+room.z+room.depth/2
+);
+
+});
 
 //=================
 
