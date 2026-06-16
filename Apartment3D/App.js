@@ -190,40 +190,52 @@ scene.add(floor);
 
 //=================
 
-const wall =
-new THREE.Mesh(
-
-new THREE.BoxGeometry(
-
+// LEFT WALL
+createWall(
+scene,
 0.2,
-
 3,
-
-10
-
-),
-
-new THREE.MeshStandardMaterial({
-
-color:"white"
-
-})
-
-);
-
-wall.position.set(
-
+10,
 -5,
-
 1.5,
-
 0
-
 );
 
-wall.castShadow=true;
 
-scene.add(wall);
+// RIGHT WALL
+createWall(
+scene,
+0.2,
+3,
+10,
+5,
+1.5,
+0
+);
+
+
+// TOP WALL
+createWall(
+scene,
+10,
+3,
+0.2,
+0,
+1.5,
+-5
+);
+
+
+// BOTTOM WALL
+createWall(
+scene,
+10,
+3,
+0.2,
+0,
+1.5,
+5
+);
 
 
 
